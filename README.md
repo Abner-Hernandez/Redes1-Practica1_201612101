@@ -1,5 +1,34 @@
 # Topologia de red
-![Network's Topology](Images/topology.png?raw=true "Title")
+La topologia a Utilizar es de tipo estrella la cual cuenta con la siguiente configuracion.
+
+1. Router C3725
+   - Conexión Interfaz f0/0 con Switch_1 (8 puertos) en puerto ethernet 0
+   - Conexión Interfaz f0/1 con Switch_2 (8 puertos) en puerto ethernet 0
+   - Configuración Interfaz f0/0 Dirección de Red 192.168.11.0/24 Dirección 192.168.11.0/24.
+   - Configuración Interfaz f0/1 Dirección de Red 192.168.10.0/24 Dirección 192.168.10.0/24
+2. Switch_1 8 puertos
+   - Conexión puerto ethernet 1 con Maquina Virtual (Tiny_Linux) en puerto ethernet 0
+   - Conexión puerto ethernet 2 con VPC (PC2) en puerto ethernet 0
+3. Switch_2 8 puertos
+   - Conexión puerto ethernet 1 con VPC (PC3) en puerto ethernet 0
+   - Conexión puerto ethernet 2 con VPC (PC4) en puerto ethernet 0
+4. VPCS
+   - PC2 direccion ip 192.168.11.30 mascara subred 255.255.255.0
+   - PC3 direccion ip 192.168.10.15 mascara subred 255.255.255.0
+   - PC4 direccion ip 192.168.10.30 mascara subred 255.255.255.0
+4. Maquina Virtual
+   - Tiny_Linux direccion ip 192.168.11.15 mascara subred 255.255.255.0
+   
+![Network's Topology](Images/topologia.PNG?raw=true "Title")
+
+# Desarrollo Topologia
+Herramientas de desarrolo para la topologia
+1. Software GNS3 en su version 2.2.12
+2. VMware workstation
+3. Tiny Linux SO
+
+## Configuración Router C3725
+La configuracion interfacez 0/0, 0/1, para esto primero es entrar en el modo configuracion del router para este caso necesitamos uso del comando 'configure terminal' luego pasamos a seleccionar la interfaz con 'interface fastEthernet0/0' luego podemos configurar varios parametros al puerto como es su velocidad, direccion ip entre otros, en este caso configuramos la direccion ip 'ip address 192.168.10.0 255.255.255.0', luego de configurar las dos Fast Ethernet del router podemos verificar dicha configuracion con 'show ip interface brief'
 
 # Glosario
 **Topología de red**
