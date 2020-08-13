@@ -19,6 +19,7 @@ La topologia a Utilizar es de tipo estrella la cual cuenta con la siguiente conf
 4. Maquina Virtual
    - Tiny_Linux direccion ip 192.168.11.15 mascara subred 255.255.255.0
    
+
 ![Network's Topology](Images/topologia.PNG?raw=true "Title")
 
 # Desarrollo Topologia
@@ -28,7 +29,61 @@ Herramientas de desarrolo para la topologia
 3. Tiny Linux SO
 
 ## Configuración Router C3725
-La configuracion interfacez 0/0, 0/1, para esto primero es entrar en el modo configuracion del router para este caso necesitamos uso del comando 'configure terminal' luego pasamos a seleccionar la interfaz con 'interface fastEthernet0/0' luego podemos configurar varios parametros al puerto como es su velocidad, direccion ip entre otros, en este caso configuramos la direccion ip 'ip address 192.168.10.0 255.255.255.0', luego de configurar las dos Fast Ethernet del router podemos verificar dicha configuracion con 'show ip interface brief'
+El Software GNS3 en su version 2.2.12 por default no trae el router C3725 y es necesario agregar el dispositivo para esto es necesario abrir las preferencias del programa luego seleccionar la seccion de Dynamips IOS Routers y seleccionar new.
+
+
+![add router](Images/preferences.PNG?raw=true "Title")
+
+
+Luego seleccionamos new image luego en browse para buscar la imagen en nuestro ordenador.
+
+
+![search image](Images/selectimage.PNG?raw=true "Title")
+
+
+Continuamos la instalacion hasta el siguiente punto, luego es necesario pulsar el boton Idle-PC Finder el cual buscara un Idle optimo para nuestro equipo y luego continuamos hasta finalizar la instalacion.
+
+
+![search idle](Images/Idlepc.PNG?raw=true "Title")
+
+
+La configuracion interfacez 0/0, 0/1, para esto primero es entrar en el modo configuracion del router para este caso necesitamos uso del comando 'configure terminal' luego pasamos a seleccionar la interfaz con 'interface fastEthernet0/0' luego podemos configurar varios parametros al puerto como es su velocidad, direccion ip entre otros, en este caso configuramos la direccion ip 'ip address 192.168.10.0 255.255.255.0'.
+
+
+![Configure router](Images/routerconfig.PNG?raw=true "Title")
+
+
+Para verificar la configuracion realizada anteiormente con 'show ip interface brief'
+
+
+![verificate Configuration router](Images/ethernetconfig.PNG?raw=true "Title")
+
+## Configuración VPC
+La configuracion a realizar en las tarjetas ethernet de nuestros vpc se realiza con el siguiente comando colocando 'ip [direccion ip] [gateway]' un ejemplo de ip utilizada para este caso seria 'ip 192.168.11.30/24 192.168.11.254', para poder ver los cambios podemos usar 'show ip'
+
+
+![verificate Configuration vpc](Images/vpcconfigure.PNG?raw=true "Title")
+
+## Configuración Maquina Virtual (Tiny Linux)
+Para la maquina virtual necesitamos configurar el adaptador de red de la maquina y para esto necesitamos primero agregar una red virtual, para esto es necesario entrar al editor de redes virtuales y agregar una red luego cambiar el gateway al que usaremos en nuestro caso sera 192.168.11.0.
+
+
+![verificate Configuration MV](Images/vnet.PNG?raw=true "Title")
+
+
+Para configurar la red en nuestra maquina virtual es necesario abrir panel de control ir a la seccion de redes, esto nos mostrara un recuadro en el cual podremos configurar los parametros de red que necesitamos en este caso ingresamos la direccion ip y gateway, en este caso utilizar ip 192.168.11.15  gateway 192.168.11.254 mascara 255.255.255.0.
+
+
+![verificate Configuration router](Images/tiny_linux.PNG?raw=true "Title")
+
+# Verificando conexion
+Para poder verificar la conexion de VPC con la maquina linux en la consola de nuestra VPC executamos 'ping 192.168.11.15'
+
+![verificate Configuration router](Images/pingtolinux.PNG?raw=true "Title")
+
+Para poder verificar la conecion de nuestra maquina virtual con alguna de nuestras VPC hacemos ping con alguna de ellas en este caso 'ping 192.168.11.30'
+
+![verificate Configuration router](Images/ping.PNG?raw=true "Title")
 
 # Glosario
 **Topología de red**
@@ -60,3 +115,6 @@ Es una nube privada que se ubica dentro de una nube pública que le permite apro
 
 **Máquina virtual**
 Es un software que simula un sistema de computación y puede ejecutar programas como si fuese una computadora real.
+
+**Idle**
+Un procesador de ordenador se describe como inactivo cuando no está siendo utilizado por ningún programa. y es necesario que los programas hagan un uso correcto del procesador cuando este este inactivo, ademas evitar que este se congele.
