@@ -47,22 +47,33 @@ Continuamos la instalacion hasta el siguiente punto, luego es necesario pulsar e
 ![search idle](Images/Idlepc.PNG?raw=true "Title")
 
 
-La configuracion interfacez 0/0, 0/1, para esto primero es entrar en el modo configuracion del router para este caso necesitamos uso del comando 'configure terminal' luego pasamos a seleccionar la interfaz con 'interface fastEthernet0/0' luego podemos configurar varios parametros al puerto como es su velocidad, direccion ip entre otros, en este caso configuramos la direccion ip 'ip address 192.168.10.0 255.255.255.0'.
+La configuracion interfacez 0/0, 0/1, para esto primero es entrar en el modo configuracion del router para este caso necesitamos uso del comando 'configure terminal' luego pasamos a seleccionar la interfaz con 'interface fastEthernet0/0' luego podemos configurar varios parametros al puerto como es su velocidad, direccion ip entre otros, en este caso configuramos la direccion ip 'ip address 192.168.10.0 255.255.255.0', la velocidad 'speed 100' y el modo de transmision 'full-duplex' para cada puerto, esto para evitar inconvenientes a en la transmision de los datos, luego aplicamos las configuraciones al puerto 'no shutdown', salimos del modo configuracion para el fast ethernet con exit.
 
 
-![Configure router](Images/routerconfig.PNG?raw=true "Title")
+![Configure router](Images/conf_router.PNG?raw=true "Title")
 
 
-Para verificar la configuracion realizada anteiormente con 'show ip interface brief'
+Para verificar la configuracion realizada anteiormente con 'show ip interface brief' en el siguiente caso solo se configuro la fast ethernet 0/0 se realizo la comprobacion de la configuracion
 
 
 ![verificate Configuration router](Images/ethernetconfig.PNG?raw=true "Title")
+
+
+Para poder guardar las configuraciones realizadas al router tenemos que salir primero del modo configuracion para esto usamos 'exit' luego guardamos con 'write'.
+
+
+![verificate Configuration router](Images/saveConfigRouter.PNG?raw=true "Title")
+
 
 ## Configuración VPC
 La configuracion a realizar en las tarjetas ethernet de nuestros vpc se realiza con el siguiente comando colocando 'ip [direccion ip] [gateway]' un ejemplo de ip utilizada para este caso seria 'ip 192.168.11.30/24 192.168.11.254', para poder ver los cambios podemos usar 'show ip'
 
 
 ![verificate Configuration vpc](Images/vpcconfigure.PNG?raw=true "Title")
+
+
+Para guardar la configuracion de cada vpc es necesario que a cada configuracion le demos 'save'
+
 
 ## Configuración Maquina Virtual (Tiny Linux)
 Para la maquina virtual necesitamos configurar el adaptador de red de la maquina y para esto necesitamos primero agregar una red virtual, para esto es necesario entrar al editor de redes virtuales y agregar una red luego cambiar el gateway al que usaremos en nuestro caso sera 192.168.11.0.
